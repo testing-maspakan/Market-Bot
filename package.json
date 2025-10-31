@@ -1,0 +1,42 @@
+{
+  "name": "discord-ecommerce-bot",
+  "version": "1.0.0",
+  "description": "Real-time e-commerce platform with Discord bot integration",
+  "private": true,
+  "workspaces": [
+    "dashboard",
+    "bot",
+    "shared"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:dashboard\" \"npm run dev:bot\"",
+    "dev:dashboard": "cd dashboard && npm run dev",
+    "dev:bot": "cd bot && npm run dev",
+    "build": "npm run build:dashboard && npm run build:bot",
+    "build:dashboard": "cd dashboard && npm run build",
+    "build:bot": "cd bot && npm run build",
+    "start": "concurrently \"npm run start:dashboard\" \"npm run start:bot\"",
+    "start:dashboard": "cd dashboard && npm start",
+    "start:bot": "cd bot && npm start",
+    "install:all": "npm install && cd dashboard && npm install && cd ../bot && npm install",
+    "clean": "rm -rf node_modules && cd dashboard && rm -rf node_modules && cd ../bot && rm -rf node_modules"
+  },
+  "keywords": [
+    "discord",
+    "ecommerce",
+    "bot",
+    "nextjs",
+    "mongodb",
+    "realtime"
+  ],
+  "author": "Your Name <your.email@example.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

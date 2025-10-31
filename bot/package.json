@@ -1,0 +1,32 @@
+{
+  "name": "discord-ecommerce-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for e-commerce platform",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "discord.js": "^14.0.0",
+    "ws": "^8.0.0",
+    "mongoose": "^7.0.0",
+    "axios": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/ws": "^8.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.0.0",
+    "nodemon": "^3.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,50 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
+    
+    - name: Install dependencies
+      run: npm run install:all
+    
+    - name: Type check dashboard
+      run: cd dashboard && npm run type-check
+    
+    - name: Type check bot
+      run: cd bot && npm run type-check
+    
+    - name: Build dashboard
+      run: cd dashboard && npm run build
+    
+    - name: Build bot
+      run: cd bot && npm run build
+
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    needs: test
+    
+    steps:
+    - name: Deploy preview
+      run: echo "Deploying preview environment..."
+      # Add your deployment steps here
